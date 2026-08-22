@@ -165,7 +165,7 @@ FROM dbo.customers
 GROUP BY payment_method
 ORDER BY churn_rate DESC
 
-USE telco_churn;
+
 -- Customer Distribution by payment method and contract 
 SELECT 
     payment_method,
@@ -183,3 +183,318 @@ GROUP BY
 ORDER BY 
     payment_method,
     customer_count DESC;
+
+-- Churn Rate by payment method and contract 
+
+SELECT 
+    payment_method,
+    contract,
+    COUNT(*) AS customer_count,
+    SUM(churn_value) AS churned_customers,
+    ROUND(
+        AVG(CAST(churn_value AS float)) * 100,
+        2
+    ) AS churn_rate
+FROM dbo.customers
+GROUP BY
+    payment_method,
+    contract
+ORDER BY 
+    churn_rate DESC;
+
+-- Churn Rate by Monthly Charges Band
+
+SELECT
+    CASE
+        WHEN monthly_charges < 30 THEN 'Under 30'
+        WHEN monthly_charges < 60 THEN '30 - 59'
+        WHEN monthly_charges < 90 THEN '60 - 89'
+        ELSE '90+'
+    END AS charges_band,
+
+    COUNT(*) AS customer_count,
+
+    SUM(churn_value) AS churned_customers,
+
+    ROUND(
+        AVG(CAST(churn_value AS FLOAT)) * 100,
+        2
+    ) AS churn_rate
+
+FROM dbo.customers
+
+GROUP BY
+    CASE
+        WHEN monthly_charges < 30 THEN 'Under 30'
+        WHEN monthly_charges < 60 THEN '30 - 59'
+        WHEN monthly_charges < 90 THEN '60 - 89'
+        ELSE '90+'
+    END
+
+ORDER BY
+    MIN(monthly_charges);
+
+-- Churn Rate by Monthly Charges Band and Contract
+
+SELECT
+    CASE
+        WHEN monthly_charges < 30 THEN 'Under 30'
+        WHEN monthly_charges < 60 THEN '30 - 59'
+        WHEN monthly_charges < 90 THEN '60 - 89'
+        ELSE '90+'
+    END AS charges_band,
+
+    contract,
+
+    COUNT(*) AS customer_count,
+
+    SUM(churn_value) AS churned_customers,
+
+    ROUND(
+        AVG(CAST(churn_value AS FLOAT)) * 100,
+        2
+    ) AS churn_rate
+
+FROM dbo.customers
+
+GROUP BY
+    CASE
+        WHEN monthly_charges < 30 THEN 'Under 30'
+        WHEN monthly_charges < 60 THEN '30 - 59'
+        WHEN monthly_charges < 90 THEN '60 - 89'
+        ELSE '90+'
+    END,
+
+    contract
+
+ORDER BY
+    MIN(monthly_charges),
+    churn_rate DESC;
+
+-- Highest risk customer segments 
+USE telco_churn;
+WITH segment_churn AS 
+(
+    SELECT 
+    contract,
+    internet_service,
+    payment_method,
+    COUNT(*) AS customer_count ,
+    SUM(churn_value) AS churned_customers,
+    ROUND(
+        AVG(CAST(churn_value AS float)) * 100,
+        2
+    ) AS churn_rate
+
+    FROM dbo.customers
+
+    GROUP BY 
+    contract,
+    internet_service,
+    payment_method
+)
+
+SELECT 
+contract,
+internet_service,
+payment_method,
+customer_count,
+churned_customers,
+churn_rate,
+
+DENSE_RANK() OVER (
+    ORDER BY churn_rate DESC
+) AS churn_rank
+FROM segment_churn
+ORDER BY churn_rank;
+
+-- Highest risk customers(excluding small no of customers)
+USE telco_churn;
+WITH segment_churn AS 
+(
+    SELECT 
+    contract,
+    internet_service,
+    payment_method,
+    COUNT(*) AS customer_count ,
+    SUM(churn_value) AS churned_customers,
+    ROUND(
+        AVG(CAST(churn_value AS float)) * 100,
+        2
+    ) AS churn_rate
+
+    FROM dbo.customers
+
+    GROUP BY 
+    contract,
+    internet_service,
+    payment_method
+)
+
+SELECT 
+contract,
+internet_service,
+payment_method,
+customer_count,
+churned_customers,
+churn_rate,
+
+DENSE_RANK() OVER (
+    ORDER BY churn_rate DESC
+) AS churn_rank
+FROM segment_churn
+WHERE customer_count >= 100
+ORDER BY churn_rank;
+
+-- Rank internet service within each contract type 
+USE telco_churn;
+WITH service_churn AS 
+(
+    SELECT
+    contract,
+    internet_service,
+    COUNT(*) AS customer_count,
+    SUM(churn_value) AS churned_customers,
+    ROUND(
+        AVG(CAST(churn_value AS float))* 100,
+        2
+    ) AS churn_rate 
+    
+    FROM dbo.customers
+    GROUP BY 
+    contract,
+    internet_service
+)
+
+SELECT 
+contract,
+internet_service,
+customer_count,
+churned_customers,
+churn_rate,
+
+DENSE_RANK() OVER (
+    PARTITION BY contract 
+    ORDER BY churn_rate DESC
+    ) AS service_rank
+
+FROM service_churn
+ORDER BY 
+contract,
+service_rank;
+
+-- Contract churn vs overall churn
+USE telco_churn;
+WITH contract_churn AS (
+    SELECT
+        contract,
+        COUNT(*) AS customer_count,
+        SUM(churn_value) AS churned_customers,
+
+        ROUND(
+            AVG(CAST(churn_value AS FLOAT)) * 100,
+            2
+        ) AS churn_rate
+
+    FROM dbo.customers
+    GROUP BY contract
+)
+
+SELECT
+    contract,
+    customer_count,
+    churned_customers,
+    churn_rate,
+
+    ROUND(
+        churn_rate - AVG(churn_rate) OVER (),
+        2
+    ) AS difference_from_average
+
+FROM contract_churn
+
+ORDER BY churn_rate DESC;
+
+-- Overall churn rate
+USE telco_churn;
+SELECT
+    ROUND(
+        AVG(CAST(churn_value AS FLOAT)) * 100,
+        2
+    ) AS overall_churn_rate
+FROM dbo.customers;
+
+-- Contract segments above overall churn rate 
+USE telco_churn;
+SELECT
+    contract,
+    COUNT(*) AS customer_count,
+    SUM(churn_value) AS customer_churn,
+    ROUND(
+        AVG(CAST(churn_value AS FLOAT)) * 100,
+        2
+    ) AS churn_rate
+FROM dbo.customers
+GROUP BY contract 
+HAVING AVG(CAST(churn_value AS FLOAT)) >
+    (
+        SELECT AVG(CAST(churn_value AS FLOAT))
+        FROM dbo.customers
+    )
+ORDER BY churn_rate DESC;
+
+-- Customer segments above overall churn rate
+USE telco_churn;
+SELECT 
+    contract,
+    internet_service,
+    payment_method,
+    COUNT(*) AS customer_count,
+    SUM(churn_value) AS churned_customers,
+    ROUND(AVG(CAST(churn_value AS FLOAT))*100,2) AS churn_rate
+FROM dbo.customers
+GROUP BY 
+    contract,
+    internet_service,
+    payment_method
+HAVING AVG(CAST(churn_value AS FLOAT)) > 
+(
+    SELECT AVG(CAST(churn_value AS FLOAT))
+    FROM dbo.customers
+)
+AND COUNT(*) >= 100
+ORDER BY churn_rate DESC;
+
+-- Ranked high-risk customer segments
+USE telco_churn;
+SELECT
+    contract,
+    internet_service,
+    payment_method,
+    COUNT(*) AS customer_count,
+    SUM(churn_value) AS churned_customers,
+    ROUND(
+        AVG(CAST(churn_value AS FLOAT)) * 100,
+        2
+    ) AS churn_rate,
+
+    DENSE_RANK() OVER (
+        ORDER BY AVG(CAST(churn_value AS FLOAT)) DESC
+    ) AS risk_rank
+
+FROM dbo.customers
+
+GROUP BY
+    contract,
+    internet_service,
+    payment_method
+
+HAVING
+    AVG(CAST(churn_value AS FLOAT)) >
+    (
+        SELECT AVG(CAST(churn_value AS FLOAT))
+        FROM dbo.customers
+    )
+    AND COUNT(*) >= 100
+
+ORDER BY risk_rank;
