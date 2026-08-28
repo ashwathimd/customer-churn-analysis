@@ -1,0 +1,13 @@
+Contract,Tenure Band,Internet Service,Payment Method,customer_count,churned,retained,churn_rate
+Month-to-month,0 - 12 months,Fiber optic,Electronic check,631,449,182,71.16
+Month-to-month,13 - 24 months,Fiber optic,Electronic check,255,150,105,58.82
+Month-to-month,0 - 12 months,DSL,Electronic check,282,142,140,50.35
+Month-to-month,0 - 12 months,DSL,Mailed check,255,102,153,40.0
+Month-to-month,25 - 36 months,Fiber optic,Electronic check,174,90,84,51.72
+Month-to-month,0 - 12 months,Fiber optic,Mailed check,123,77,46,62.6
+Month-to-month,0 - 12 months,No,Mailed check,263,63,200,23.95
+Month-to-month,37 - 48 months,Fiber optic,Electronic check,112,50,62,44.64
+Two year,61 - 72 months,Fiber optic,Bank transfer (automatic),134,10,124,7.46
+Two year,61 - 72 months,Fiber optic,Credit card (automatic),128,6,122,4.69
+Two year,61 - 72 months,DSL,Credit card (automatic),159,4,155,2.52
+Two year,61 - 72 months,DSL,Bank transfer (automatic),160,2,158,1.25

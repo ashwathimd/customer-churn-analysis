@@ -1,0 +1,16 @@
+Monthly_Charges_Band,Contract,customer_count,churned,retained,churn_rate
+Low ($18-40),Month-to-month,762,197,565,25.85
+Low ($18-40),One year,410,12,398,2.93
+Low ($18-40),Two year,666,5,661,0.75
+Lower-Mid ($40-60),Month-to-month,731,254,477,34.75
+Lower-Mid ($40-60),One year,213,17,196,7.98
+Lower-Mid ($40-60),Two year,136,5,131,3.68
+Mid ($60-80),Month-to-month,917,440,477,47.98
+Mid ($60-80),One year,285,28,257,9.82
+Mid ($60-80),Two year,257,5,252,1.95
+Upper-Mid ($80-100),Month-to-month,1141,602,539,52.76
+Upper-Mid ($80-100),One year,292,41,251,14.04
+Upper-Mid ($80-100),Two year,331,10,321,3.02
+High ($100-120),Month-to-month,324,162,162,50.0
+High ($100-120),One year,273,68,205,24.91
+High ($100-120),Two year,305,23,282,7.54

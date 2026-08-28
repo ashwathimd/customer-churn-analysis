@@ -1,0 +1,17 @@
+Monthly_Charges_Band,Contract,Internet Service,Payment Method,customer_count,churned,retained,churn_rate
+Mid ($60-80),Month-to-month,Fiber optic,Electronic check,408,269,139,65.93
+Upper-Mid ($80-100),Month-to-month,Fiber optic,Electronic check,692,409,283,59.1
+Low ($18-40),Month-to-month,DSL,Electronic check,102,55,47,53.92
+High ($100-120),Month-to-month,Fiber optic,Electronic check,207,111,96,53.62
+Upper-Mid ($80-100),Month-to-month,Fiber optic,Bank transfer (automatic),172,75,97,43.6
+Upper-Mid ($80-100),Month-to-month,Fiber optic,Credit card (automatic),171,71,100,41.52
+Lower-Mid ($40-60),Month-to-month,DSL,Electronic check,291,120,171,41.24
+Lower-Mid ($40-60),Month-to-month,DSL,Mailed check,233,79,154,33.91
+Lower-Mid ($40-60),Month-to-month,DSL,Credit card (automatic),108,35,73,32.41
+Low ($18-40),Month-to-month,No,Mailed check,325,67,258,20.62
+High ($100-120),Two year,Fiber optic,Bank transfer (automatic),115,11,104,9.57
+High ($100-120),Two year,Fiber optic,Credit card (automatic),109,6,103,5.5
+Low ($18-40),One year,No,Mailed check,164,2,162,1.22
+Low ($18-40),Two year,No,Credit card (automatic),190,2,188,1.05
+Low ($18-40),Two year,No,Mailed check,252,2,250,0.79
+Low ($18-40),Two year,No,Bank transfer (automatic),178,1,177,0.56

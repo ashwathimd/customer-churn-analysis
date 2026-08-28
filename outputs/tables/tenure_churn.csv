@@ -1,0 +1,7 @@
+Tenure Band,customer_count,churned,retained,churn_rate
+0 - 12 months,2186,1037,1149,47.44
+13 - 24 months,1024,294,730,28.71
+25 - 36 months,832,180,652,21.63
+37 - 48 months,762,145,617,19.03
+49 - 60 months,832,120,712,14.42
+61 - 72 months,1407,93,1314,6.61

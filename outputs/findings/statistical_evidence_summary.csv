@@ -1,0 +1,13 @@
+variable_relationship,statistical_test,p_value,effect_size,effect_measure,interpretation
+Contract → Churn,Chi-Square,<0.001,0.4101,Cramer's V,Moderate association
+Internet Service → Churn,Chi-Square,<0.001,0.3225,Cramer's V,Moderate association
+Payment Method → Churn,Chi-Square,<0.001,0.3034,Cramer's V,Moderate association
+Monthly Charges → Churn,Welch's t-test,<0.001,0.4463,Cohen's d,Small effect
+Total Charges → Churn,Welch's t-test,<0.001,-0.4608,Cohen's d,Small effect
+Tenure → Churn,Welch's t-test,<0.001,-0.8522,Cohen's d,Large effect
+Contract → Monthly Charges,One-Way ANOVA,<0.001,0.0059,Eta Squared,Negligible effect
+Internet Service → Monthly Charges,One-Way ANOVA,<0.001,0.8207,Eta Squared,Large effect
+Payment Method → Monthly Charges,One-Way ANOVA,<0.001,0.161,Eta Squared,Large effect
+Tenure ↔ Total Charges,Pearson / Spearman,<0.001,0.8259 / 0.8892,Pearson r / Spearman ρ,Strong positive relationship
+Monthly Charges ↔ Total Charges,Pearson / Spearman,<0.001,0.6511 / 0.6380,Pearson r / Spearman ρ,Moderate–strong positive relationship
+Tenure ↔ Monthly Charges,Pearson / Spearman,<0.001,0.2479 / 0.2764,Pearson r / Spearman ρ,Weak positive relationship

@@ -1,0 +1,4 @@
+variable,test,statistic,degrees_of_freedom,p_value,effect_size,effect_measure
+Contract,Chi-Square Test of Independence,1184.5966,2,5.863038300673393e-258,"{'cramers_v': np.float64(0.4101), 'effect_size': 'Moderate'}",Cramer's V
+Internet Service,Chi-Square Test of Independence,732.3096,2,9.571788222840544e-160,"{'cramers_v': np.float64(0.3225), 'effect_size': 'Moderate'}",Cramer's V
+Payment Method,Chi-Square Test of Independence,648.1423,3,3.6823546520098007e-140,"{'cramers_v': np.float64(0.3034), 'effect_size': 'Moderate'}",Cramer's V

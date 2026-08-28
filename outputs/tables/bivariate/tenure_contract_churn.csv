@@ -1,0 +1,19 @@
+Tenure Band,Contract,customer_count,churned,retained,churn_rate
+0 - 12 months,Month-to-month,1994,1024,970,51.35
+0 - 12 months,One year,124,13,111,10.48
+0 - 12 months,Two year,68,0,68,0.0
+13 - 24 months,Month-to-month,737,278,459,37.72
+13 - 24 months,One year,197,16,181,8.12
+13 - 24 months,Two year,90,0,90,0.0
+25 - 36 months,Month-to-month,486,158,328,32.51
+25 - 36 months,One year,250,20,230,8.0
+25 - 36 months,Two year,96,2,94,2.08
+37 - 48 months,Month-to-month,316,106,210,33.54
+37 - 48 months,One year,268,35,233,13.06
+37 - 48 months,Two year,178,4,174,2.25
+49 - 60 months,Month-to-month,234,65,169,27.78
+49 - 60 months,One year,321,44,277,13.71
+49 - 60 months,Two year,277,11,266,3.97
+61 - 72 months,Month-to-month,108,24,84,22.22
+61 - 72 months,One year,313,38,275,12.14
+61 - 72 months,Two year,986,31,955,3.14

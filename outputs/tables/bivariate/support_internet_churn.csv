@@ -1,0 +1,6 @@
+Tech Support,Internet Service,customer_count,churned,retained,churn_rate
+No,DSL,1243,345,898,27.76
+No,Fiber optic,2230,1101,1129,49.37
+No internet service,No,1526,113,1413,7.4
+Yes,DSL,1178,114,1064,9.68
+Yes,Fiber optic,866,196,670,22.63

@@ -1,0 +1,4 @@
+Internet Service,customer_count,churned,retained,churn_rate
+DSL,2421,459,1962,18.96
+Fiber optic,3096,1297,1799,41.89
+No,1526,113,1413,7.4

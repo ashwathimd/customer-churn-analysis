@@ -1,0 +1,13 @@
+Payment Method,Contract,customer_count,churned,retained,churn_rate
+Bank transfer (automatic),Month-to-month,589,201,388,34.13
+Bank transfer (automatic),One year,391,38,353,9.72
+Bank transfer (automatic),Two year,564,19,545,3.37
+Credit card (automatic),Month-to-month,543,178,365,32.78
+Credit card (automatic),One year,398,41,357,10.3
+Credit card (automatic),Two year,581,13,568,2.24
+Electronic check,Month-to-month,1850,994,856,53.73
+Electronic check,One year,347,64,283,18.44
+Electronic check,Two year,168,13,155,7.74
+Mailed check,Month-to-month,893,282,611,31.58
+Mailed check,One year,337,23,314,6.82
+Mailed check,Two year,382,3,379,0.79

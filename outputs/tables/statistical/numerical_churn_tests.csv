@@ -1,0 +1,4 @@
+variable,test,statistic,degrees_of_freedom,p_value,effect_size,effect_measure,effect_interpretation
+Monthly Charges,Welch's t-test,18.4075,4135.795,8.592449331547065e-73,0.4463,Cohen's d,Small
+Total Charges,Welch's t-test,-18.8008,4042.9311,1.1524944112838777e-75,-0.4608,Cohen's d,Small
+Tenure Months,Welch's t-test,-34.8238,4048.2876,1.1954945472605766e-232,-0.8522,Cohen's d,Large
